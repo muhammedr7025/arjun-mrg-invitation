@@ -21,3 +21,12 @@ img {
   height: 100%;
   object-fit: cover; /* Cover the entire area without losing aspect ratio */
 }
+
+/* Ensuring the mobile experience is smooth, especially on devices with a notch */
+@media (max-width: 800px) {
+  body,
+  html {
+    max-height: 100vh;
+    max-width: 100vw;
+  }
+}

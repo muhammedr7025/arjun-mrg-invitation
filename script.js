@@ -1,10 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
   var audio = document.querySelector("audio");
-  audio.play().catch((error) => {
-    console.log(
-      "Auto-play was prevented by the browser. Interact with the document to start playback."
-    );
-    // Optionally, add a click event to start playing
-    document.body.addEventListener("click", () => audio.play());
-  });
+  function startAudio() {
+    audio.play().catch((error) => {
+      console.log(
+        "Playback was prevented by the browser. Please interact with the document."
+      );
+    });
+    // Remove the event listener after the audio has started
+    document.body.removeEventListener("click", startAudio);
+    document.body.removeEventListener("touchstart", startAudio);
+  }
+
+  document.body.addEventListener("click", startAudio);
+  document.body.addEventListener("touchstart", startAudio); // Specifically for mobile devices
 });
